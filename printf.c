@@ -10,9 +10,9 @@ int _printf(const char *format, ...)
 {
 	va_list passed_args;
 	int i;
-	int count = 0;
-	char *str;
+	int count;
 
+	count = 0;
 	va_start(passed_args, format);
 
 	for (i = 0; format[i] != '\0'; i++)
@@ -23,7 +23,7 @@ int _printf(const char *format, ...)
 			if (format[i] == 'c')
 				count += put_char(va_arg(passed_args, int));
 			else if (format[i] == 's')
-				count += put_string(va_arg(passed_args, char*))
+				count += put_string(va_arg(passed_args, char*));
 			else if (format[i] == '%')
 				count += write(1, "%", 1);
 			else
