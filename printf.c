@@ -11,7 +11,6 @@ int _printf(const char *format, ...)
 	va_list passed_args;
 	int i;
 	int count = 0;
-	char ch;
 	char *str;
 
 	va_start(passed_args, format);
@@ -22,19 +21,11 @@ int _printf(const char *format, ...)
 		{
 			i++;
 			if (format[i] == 'c')
-			{
-				ch = va_arg(passed_args, int);
-				count += write(1, &ch, 1);
-			}
+				count += put_char(va_arg(passed_args, int));
 			else if (format[i] == 's')
-			{
-				str = va_arg(passed_args, char *);
-				count += write(1, str, _strlen(str));
-			}
+				count += put_string(va_arg(passed_args, char*))
 			else if (format[i] == '%')
-			{
 				count += write(1, "%", 1);
-			}
 			else
 			{
 				count += write(1, &format[i - 1], 1);
