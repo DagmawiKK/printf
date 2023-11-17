@@ -45,6 +45,8 @@ int _printf(const char *format, ...)
 				count += print_pointer(va_arg(args, void *));
 			else if (*ptr == '%')
 				count += put_char('%');
+			else if (*ptr == 'r')
+				count += print_reversed_string(va_arg(args, const char *));
 		}
 	}
 	va_end(args);

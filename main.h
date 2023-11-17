@@ -16,5 +16,6 @@ int print_number(unsigned int n, int base, char specifier);
 int write_buffer(const char *buffer, int size);
 int _print_string(const char *str);
 int print_pointer(void *ptr);
+int print_reversed_string(const char *str);
 
 #endif
