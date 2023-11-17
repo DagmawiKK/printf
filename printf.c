@@ -17,16 +17,12 @@ int _printf(const char *format, ...)
 	for (ptr = format; *ptr != '\0'; ptr++)
 	{
 		if (*ptr != '%')
-		{
 			count += put_char(*ptr);
-		}
 		else
 		{
 			ptr++;
 			if (*ptr == 'c')
-			{
 				count += put_char(va_arg(args, int));
-			}
 			else if (*ptr == 's')
 			{
 				buffer = va_arg(args, char *);
@@ -34,7 +30,13 @@ int _printf(const char *format, ...)
 				count += len;
 			}
 			else if (*ptr == 'd' || *ptr == 'i')
-				count += print_number(va_arg(args, int));
+				count += print_number(va_arg(args, int), 10, *ptr);
+			else if (*ptr == 'u')
+				count += print_number(va_arg(args, unsigned int), 10, *ptr);
+			else if (*ptr == 'o')
+				count += print_number(va_arg(args, unsigned int), 8, *ptr);
+			else if (*ptr == 'x' || *ptr == 'X') 
+				count += print_number(va_arg(args, unsigned int), 16, *ptr);
 			else if (*ptr == 'b')
 				count += print_binary(va_arg(args, unsigned int));
 			else if (*ptr == '%')
