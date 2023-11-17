@@ -8,11 +8,12 @@
 
 int put_string(char *string)
 {
-  int count = 0;
+	int count = 0;
+
 	while (*string)
 	{
 		count += put_char(*string);
 		string++;
 	}
-	return count;
+	return (count);
 }
