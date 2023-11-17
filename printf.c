@@ -33,6 +33,10 @@ int _printf(const char *format, ...)
 				len = put_string(buffer);
 				count += len;
 			}
+			else if (*ptr == 'd' || *ptr == 'i')
+			{
+				count += print_number(va_arg(args, int));
+			}
 			else if (*ptr == '%')
 			{
 				count += put_char('%');
