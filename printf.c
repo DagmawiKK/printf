@@ -41,6 +41,8 @@ int _printf(const char *format, ...)
 				count += print_binary(va_arg(args, unsigned int));
 			else if (*ptr == 'S')
 				count += _print_string(va_arg(args, char *));
+			else if (*ptr == 'p')
+				count += print_pointer(va_arg(args, void *));
 			else if (*ptr == '%')
 				count += put_char('%');
 		}
