@@ -1,3 +1,5 @@
+#include "main.h"
+
 /**
  * print_number - Prints a number to the standard output
  * @n: The number to print
