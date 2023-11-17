@@ -9,10 +9,10 @@
 int put_string(char *string)
 {
   int count = 0;
-	while (*str)
+	while (*string)
 	{
-		count += put_char(*str);
-		str++;
+		count += put_char(*string);
+		string++;
 	}
 	return count;
 }
