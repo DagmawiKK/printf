@@ -8,9 +8,9 @@
  */
 int print_pointer(void *ptr)
 {
-		uintptr_t address = (uintptr_t)ptr;
+		intptr_t address = (intptr_t)ptr;
 		int count = 0;
-		count += _puts("0x");
+		count += put_string("0x");
 		count += print_number(address, 16, 'x');
 		return (count);
 }
