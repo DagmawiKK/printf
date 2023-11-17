@@ -13,6 +13,6 @@ int print_binary(unsigned int n)
 	{
 		count += print_binary(n / 2);
 	}
-	count += _putchar((n % 2) + '0');
+	count += put_char((n % 2) + '0');
 	return count;
 }
