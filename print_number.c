@@ -9,45 +9,52 @@
  */
 int print_number(unsigned int n, int base, char specifier)
 {
-	char *hex = "0123456789abcdef";
-	char *hex_upper = "0123456789ABCDEF";
-	int count = 0;
+		char *hex = "0123456789abcdef";
+		char *hex_upper = "0123456789ABCDEF";
+		char buffer[BUFFER_SIZE];
+		int count = 0;
+		int i = 0;
 
-	if (base == 10)
-	{
-		if (n / 10 != 0)
+		if (base == 10)
 		{
-			count += print_number(n / 10, base, specifier);
+				if (n / 10 != 0)
+				{
+						count += print_number(n / 10, base, specifier);
+				}
+				buffer[i] = (n % 10) + '0';
+				i++;
 		}
-			count += put_char((n % 10) + '0');
-	}
-	else if (base == 8)
-	{
-		if (n / 8 != 0)
+		else if (base == 8)
 		{
-			count += print_number(n / 8, base, specifier);
+				if (n / 8 != 0)
+				{
+						count += print_number(n / 8, base, specifier);
+				}
+				buffer[i] = (n % 8) + '0';
+				i++;
 		}
-		count += put_char((n % 8) + '0');
-	}
-	else if (base == 16)
-	{
-		if (specifier == 'x')
+		else if (base == 16)
 		{
-			if (n / 16 != 0)
-			{
-				count += print_number(n / 16, base, specifier);
-			}
-			count += put_char(hex[n % 16]);
+				if (specifier == 'x')
+				{
+						if (n / 16 != 0)
+						{
+								count += print_number(n / 16, base, specifier);
+						}
+						buffer[i] = hex[n % 16];
+						i++;
+				}
+				else if (specifier == 'X')
+				{
+						if (n / 16 != 0)
+						{
+								count += print_number(n / 16, base, specifier);
+						}
+						buffer[i] = hex_upper[n % 16];
+						i++;
+				}
 		}
-		else if (specifier == 'X')
-		{
-			if (n / 16 != 0)
-			{
-				count += print_number(n / 16, base, specifier);
-			}
-			count += put_char(hex_upper[n % 16]);
-		}
-	}
-	return (count);
+
+		count += write_buffer(buffer, i);
+		return (count);
 }
-
