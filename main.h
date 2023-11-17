@@ -14,4 +14,5 @@ int put_string(char *string);
 int print_binary(unsigned int n);
 int print_number(unsigned int n, int base, char specifier);
 int write_buffer(const char *buffer, int size);
+int _print_string(const char *str);
 #endif
