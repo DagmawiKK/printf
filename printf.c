@@ -34,13 +34,11 @@ int _printf(const char *format, ...)
 				count += len;
 			}
 			else if (*ptr == 'd' || *ptr == 'i')
-			{
 				count += print_number(va_arg(args, int));
-			}
+			else if (*ptr == 'b')
+				count += print_binary(va_arg(args, unsigned int));
 			else if (*ptr == '%')
-			{
 				count += put_char('%');
-			}
 		}
 	}
 	va_end(args);
