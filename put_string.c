@@ -8,10 +8,11 @@
 
 int put_string(char *string)
 {
-	int i;
-
-	for (i = 0; *string != '\0'; i++)
-		put_char(string[i]);
-
-	return (_strlen(string));
+  int count = 0;
+	while (*str)
+	{
+		count += put_char(*str);
+		str++;
+	}
+	return count;
 }

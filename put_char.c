@@ -6,13 +6,7 @@
 * Return: number of bytes printed
 */
 
-int put_char(int c)
+int put_char(char c)
 {
-	char ch;
-	int count;
-
-	count = 0;
-	count += write(1, &c, 1);
-
-	return (count);
+	return write(1, &c, 1);
 }

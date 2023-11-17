@@ -5,38 +5,40 @@
  * @format: The format string containing format specifiers
  * Return: Returns the count of characters or bytes written
  */
-
 int _printf(const char *format, ...)
 {
-	va_list passed_args;
-	int i;
-	int count;
+	va_list args;
+	int count = 0;
+	const char *ptr;
+	char *buffer;
+	int len;
 
-	count = 0;
-	va_start(passed_args, format);
-
-	for (i = 0; format[i] != '\0'; i++)
+	va_start(args, format);
+	for (ptr = format; *ptr != '\0'; ptr++)
 	{
-		if (format[i] == '%')
+		if (*ptr != '%')
 		{
-			i++;
-			if (format[i] == 'c')
-				count += put_char(va_arg(passed_args, int));
-			else if (format[i] == 's')
-				count += put_string(va_arg(passed_args, char*));
-			else if (format[i] == '%')
-				count += write(1, "%", 1);
-			else
-			{
-				count += write(1, &format[i - 1], 1);
-				count += write(1, &format[i], 1);
-			}
+			count += put_char(*ptr);
 		}
 		else
 		{
-			count += write(1, &format[i], 1);
+			ptr++;
+			if (*ptr == 'c')
+			{
+				count += put_char(va_arg(args, int));
+			}
+			else if (*ptr == 's')
+			{
+				buffer = va_arg(args, char *);
+				len = put_string(buffer);
+				count += len;
+			}
+			else if (*ptr == '%')
+			{
+				count += put_char('%');
+			}
 		}
 	}
-	va_end(passed_args);
-	return (count);
+	va_end(args);
+	return count;
 }

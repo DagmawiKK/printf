@@ -7,8 +7,7 @@
 #include <stdarg.h>
 
 int _printf(const char *format, ...);
-int _strlen(char *str);
-int put_char(int c);
+int put_char(char c);
 int put_string(char *string);
 
 #endif
